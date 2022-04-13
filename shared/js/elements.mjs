@@ -81,7 +81,9 @@ export function generateSidebar(nodeAside) {
           <img src="shared/images/user-profile.png" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">Alexander Romero</a>
+          <a href="https://github.com/alex1812r" target="blank class="d-block">
+            Alexander Romero
+          </a>
         </div>
       </div>
 
@@ -91,19 +93,19 @@ export function generateSidebar(nodeAside) {
             <ul class="nav nav-treeview">
               <li class="nav-item">
                 <a href="users.html" class="nav-link ${currentPath.includes('user') ? 'active' : ''}">
-                  <i class="fa-solid fa-users nav-icon"></i>
+                  <i class="fas fa-users nav-icon"></i>
                   <p>Users</p>
                 </a>
               </li>
               <li class="nav-item active">
                 <a href="posts.html" class="nav-link ${currentPath.includes('post') ? 'active' : ''}">
-                  <i class="fa-solid fa-users nav-icon"></i>
+                  <i class="far fa-newspaper nav-icon"></i>
                   <p>Posts</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="photos.html" class="nav-link ${currentPath.includes('photo') ? 'active' : ''}">
-                  <i class="fa-solid fa-users nav-icon"></i>
+                  <i class="fas fa-images nav-icon"></i>
                   <p>Photos</p>
                 </a>
               </li>
