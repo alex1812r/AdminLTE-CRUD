@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Test | Users</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    
+  </head>
+  <body class="hold-transition sidebar-mini" style="overflow-y: hidden;">
+    <div class="wrapper" id="wrapper">
+      
+      <nav id="navbar"></nav>
+
+      <aside id="sidebar"></aside>
+
+      <!-- Content Wrapper. Contains page content -->
+      <div class="content-wrapper" style="overflow: auto; max-height: calc(100vh - 114px)">
+        <!-- Main content -->
+        <main class="content">
+          <div class="container-fluid pt-3">
+            <h1 class="mb-4">New User</h1>
+            <form id="user-form" style="max-width: 400px;">
+            </form>
+          </div><!-- /.container-fluid -->
+        </main>
+        <!-- /.content -->
+      </div>
+      <!-- /.content-wrapper -->
+
+      <aside id="sidebar-control"></aside>
+
+      <footer id="footer"></footer>
+    </div>
+  <!-- ./wrapper -->
+
+  <!-- REQUIRED SCRIPTS -->
+
+    <!-- Font Awesome Icons -->
+    <script src="https://kit.fontawesome.com/5d81f7a1da.js" crossorigin="anonymous"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <!-- Bootstrap 4 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
+    <!-- AdminLTE App -->
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    
+    <script type="module">
+      import { createUser } from './modules/users/js/users-actions.mjs';
+      import { generateUserForm } from './modules/users/js/users-elements.mjs';
+      import { 
+        createOverlaySpinner, 
+        generateNavbar, 
+        generateFooter,
+        generateSidebar,
+        generateSidebarControl 
+      } from './shared/js/elements.mjs';
+      
+      const userForm = document.getElementById('user-form');
+  
+      generateNavbar(document.getElementById('navbar'));
+      generateSidebar(document.getElementById('sidebar'));
+      generateSidebarControl(document.getElementById('sidebar-control'));
+      generateFooter(document.getElementById('footer'));
+
+      const onCreateUser = (data) => {
+        const buttonSubmit = userForm.querySelector('[type="submit"]');
+        buttonSubmit.textContent = 'Loading...';
+        buttonSubmit.setAttribute('disabled', '');
+        const resetButtonSubmit = () => {
+          buttonSubmit.textContent = 'Submit';
+          buttonSubmit.removeAttribute('disabled');
+        }
+        createUser(data)
+          .then(() => {
+            alert('user created!')
+            resetButtonSubmit();
+            window.location.pathname = '/users.html'
+          })
+          .catch(() => {
+            resetButtonSubmit();
+            alert('error creating user');
+          });
+
+      }
+
+      generateUserForm(userForm, onCreateUser);
+
+    </script>
+  </body>
+</html>
